@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VetCampus – Plateforme pédagogique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6fc;--card:#fff;--ink:#0b1f4d;--mut:#5b6b8f;--line:#e1e8f5;--pri:#1d4ed8;--priH:#1740b3;--soft:#e8efff;--navy:#0b1f4d;--ok:#0f9d6b;--btn:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#081027;--card:#101a38;--ink:#e8eefc;--mut:#9aaad0;--line:#22305a;--pri:#3b6df0;--priH:#5a85f5;--soft:#16244d}}
+:root[data-theme="dark"]{--bg:#081027;--card:#101a38;--ink:#e8eefc;--mut:#9aaad0;--line:#22305a;--pri:#3b6df0;--priH:#5a85f5;--soft:#16244d}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 "Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:30}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid #7ea4ff;outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--navy);color:#fff}
+.bar{max-width:1180px;margin:auto;display:flex;align-items:center;gap:18px;padding:12px 20px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.3px}
+.logo small{display:block;font-weight:500;font-size:11px;opacity:.7;letter-spacing:0}
+.mark{width:38px;height:38px;border-radius:11px;background:#fff;display:grid;place-items:center}
+nav{display:flex;gap:4px;margin-left:12px}
+nav a{padding:8px 14px;border-radius:10px;font-weight:600;font-size:14px;opacity:.8;transition:.2s}
+nav a:hover{background:rgba(255,255,255,.1);opacity:1}
+nav a.on{background:#fff;color:var(--navy);opacity:1}
+.search{margin-left:auto;position:relative;flex:0 1 300px}
+.search input{width:100%;padding:10px 14px 10px 38px;border-radius:12px;border:0;background:rgba(255,255,255,.13);color:#fff}
+.search input::placeholder{color:#c5d3f5}
+.search svg{position:absolute;left:12px;top:11px;opacity:.8}
+.burger{display:none;background:none;border:0;color:#fff;padding:6px;cursor:pointer}
+main{max-width:1180px;margin:auto;padding:26px 20px 60px;min-height:70vh}
+h1{font-size:30px;letter-spacing:-.6px;margin:0 0 6px;line-height:1.2}
+h2{font-size:20px;margin:34px 0 14px;letter-spacing:-.3px}
+.sub{color:var(--mut);margin:0 0 20px;max-width:62ch}
+.crumb{font-size:13px;color:var(--mut);margin-bottom:12px}.crumb a{color:var(--pri);font-weight:600}
+.hero{background:linear-gradient(120deg,var(--navy),#1d4ed8);color:#fff;border-radius:24px;padding:38px;display:grid;grid-template-columns:1.3fr 1fr;gap:28px;overflow:hidden}
+.hero h1{font-size:36px}.hero p{opacity:.88;max-width:52ch}
+.hero .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:center}
+.stat{background:rgba(255,255,255,.12);border-radius:16px;padding:16px}
+.stat b{font-size:26px;display:block}.stat span{font-size:13px;opacity:.85}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:11px;border:1px solid var(--line);background:var(--card);font-weight:600;font-size:14px;cursor:pointer;transition:.2s}
+.btn:hover{border-color:var(--pri);color:var(--pri)}
+.btn.p{background:var(--pri);border-color:var(--pri);color:#fff}.btn.p:hover{background:var(--priH);color:#fff}
+.btn.w{background:#fff;color:var(--navy);border-color:#fff}.btn.w:hover{color:var(--pri)}
+.btn.g{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+.btn.d{color:#d33}.btn.d:hover{border-color:#d33;color:#d33}
+.btn.s{padding:6px 11px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.grid.w{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;transition:transform .2s,box-shadow .2s,border-color .2s}
+a.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(29,78,216,.14);border-color:var(--pri)}
+.sem{display:flex;flex-direction:column;gap:4px}
+.sem .n{width:46px;height:46px;border-radius:14px;background:var(--soft);color:var(--pri);display:grid;place-items:center;font-weight:800;font-size:20px;margin-bottom:8px}
+.sem b{font-size:16px}.sem span{font-size:13px;color:var(--mut)}
+.tag{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:700;background:var(--soft);color:var(--pri)}
+.tag.td{background:#e3f6ee;color:#0b7a53}.tag.tp{background:#fff0dc;color:#a35a00}.tag.ppt{background:#ffe6e6;color:#b42323}.tag.comp{background:#eceef4;color:#4a5578}
+.doc{display:flex;flex-direction:column;gap:8px}
+.doc h3{margin:0;font-size:15px;line-height:1.35}.doc .m{font-size:12.5px;color:var(--mut)}
+.doc .a{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+.tabs button{padding:7px 14px;border-radius:99px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-weight:600;font-size:13px}
+.tabs button.on{background:var(--pri);border-color:var(--pri);color:#fff}
+.filters{display:flex;gap:10px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);padding:14px;border-radius:18px;margin-bottom:18px}
+.filters input,.filters select,.f input,.f select{padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);min-width:0;flex:1 1 150px}
+.f{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:12px}
+.empty{text-align:center;color:var(--mut);padding:40px 10px;border:1px dashed var(--line);border-radius:18px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.about{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+footer{background:var(--navy);color:#c5d3f5;text-align:center;padding:22px;font-size:13px}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:var(--navy);color:#fff;padding:11px 18px;border-radius:12px;opacity:0;transition:.3s;z-index:50;pointer-events:none;max-width:90vw}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.pg{animation:in .25s ease}@keyframes in{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding:26px}.hero h1{font-size:28px}.search{flex:1}
+.burger{display:block;order:3}nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--navy);flex-direction:column;padding:8px 14px 14px;margin:0}nav.open{display:flex}.bar{gap:10px}.logo small{display:none}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<a class="logo" href="#accueil"><span class="mark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.4" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg></span><span>VetCampus<small>École Vétérinaire</small></span></a>
+<nav id="nav"><a href="#accueil" data-p="accueil">Accueil</a><a href="#semestres" data-p="semestres">Semestres</a><a href="#sujets" data-p="sujets">Anciens sujets</a><a href="#ressources" data-p="ressources">Ressources</a><a href="#apropos" data-p="apropos">À propos</a></nav>
+<div class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" placeholder="Rechercher un cours, une matière, un sujet…" aria-label="Recherche globale"></div>
+<button class="burger" id="bg" aria-label="Ouvrir le menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div></header>
+<main id="app" class="pg"></main>
+<footer>© 2026 VetCampus – École Vétérinaire · <a href="#admin" style="text-decoration:underline">Espace administrateur</a></footer>
+<div id="toast" role="status"></div>
+<script>
+const KEY='vetcampus-v1',ADMIN_CODE='vet2026';
+const KINDS={cours:'Cours PDF',td:'TD',tp:'TP',ppt:'PowerPoint',comp:'Complément'};
+const ETYPES=['Examen','Devoir','Rattrapage'];
+const NAMES=[['Anatomie générale','Biologie cellulaire','Chimie générale'],['Histologie','Physiologie animale','Biochimie'],['Embryologie','Génétique','Microbiologie'],['Immunologie','Parasitologie','Zootechnie'],['Pathologie générale','Pharmacologie','Virologie'],['Sémiologie','Anatomie pathologique','Nutrition animale'],['Pathologie médicale','Chirurgie générale','Imagerie médicale'],['Reproduction','Maladies infectieuses','Toxicologie'],['Hygiène des denrées','Médecine bovine','Médecine canine et féline'],['Chirurgie spéciale','Anesthésiologie','Santé publique'],['Clinique ambulante','Épidémiologie','Législation vétérinaire'],['Stage et mémoire','Déontologie','Gestion de clinique']];
+const ICO={pdf:'<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/>',td:'<path d="M5 4h14v16H5z"/><path d="M9 9h6M9 13h6"/>',tp:'<path d="M9 3v6l-5 9a2 2 0 002 3h12a2 2 0 002-3l-5-9V3M8 3h8"/>',ppt:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v4M8 20h8"/>',comp:'<path d="M4 6h16M4 12h16M4 18h10"/>',dl:'<path d="M12 4v12m-5-5l5 5 5-5M5 20h14"/>',eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'};
+const ic=(n,s=16)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICO[n]||ICO.pdf}</svg>`;
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let S=load(),admin=false,query='';
+function seed(){const subjects=[],docs=[],exams=[];let d=0;
+NAMES.forEach((l,i)=>l.forEach((n,j)=>{const id='s'+(i+1)+'m'+(j+1);subjects.push({id,sem:i+1,name:n});
+const ks=['cours','td','ppt',j%2?'tp':'comp'];ks.forEach((k,x)=>docs.push({id:'d'+(d++),subj:id,kind:k,title:(k==='cours'?'Cours complet – ':k==='td'?'Série de TD n°1 – ':k==='ppt'?'Présentation – ':k==='tp'?'Fiche de TP – ':'Lectures conseillées – ')+n,date:'2026-0'+(1+((i+x)%9))+'-1'+x}));
+exams.push({id:'e'+i+j+'a',subj:id,year:'2024-2025',type:'Examen',title:'Examen final – '+n},{id:'e'+i+j+'b',subj:id,year:'2023-2024',type:j%2?'Devoir':'Rattrapage',title:ETYPES[j%2?1:2]+' – '+n});}));
+return{subjects,docs,exams}}
+function load(){try{const r=localStorage.getItem(KEY);if(r)return JSON.parse(r)}catch(e){}return seed()}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('Enregistrement impossible : le stockage du navigateur est plein.')}}
+const subj=id=>S.subjects.find(s=>s.id===id)||{name:'?',sem:0};
+let tt;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2800)}
+async function act(id,mode){const x=S.docs.find(d=>d.id===id)||S.exams.find(e=>e.id===id);if(!x)return;
+if(!x.file){toast('Démonstration : aucun PDF n’est encore rattaché à ce document.');return}
+try{const b=await (await fetch(x.file)).blob(),u=URL.createObjectURL(b);
+if(mode==='view')window.open(u,'_blank');else{const a=document.createElement('a');a.href=u;a.download=(x.title||'document')+'.pdf';a.click()}}catch(e){toast('Ce fichier est illisible. Ajoutez-le à nouveau depuis l’espace administrateur.')}}
+const docCard=d=>`<div class="card doc"><div style="display:flex;gap:8px;justify-content:space-between;align-items:center"><span class="tag ${d.kind}">${KINDS[d.kind]}</span><span style="color:var(--mut)">${ic(d.kind==='cours'?'pdf':d.kind)}</span></div><h3>${esc(d.title)}</h3><div class="m">${esc(subj(d.subj).name)} · Semestre ${subj(d.subj).sem}${d.date?' · ajouté le '+new Date(d.date).toLocaleDateString('fr-FR'):''}</div><div class="a"><button class="btn s p" onclick="act('${d.id}','view')">${ic('eye',15)} Consulter</button><button class="btn s" onclick="act('${d.id}','dl')">${ic('dl',15)} Télécharger</button></div></div>`;
+const examCard=e=>`<div class="card doc"><div style="display:flex;justify-content:space-between;align-items:center"><span class="tag">${esc(e.type)}</span><b style="color:var(--pri)">${esc(e.year)}</b></div><h3>${esc(subj(e.subj).name)}</h3><div class="m">Semestre ${subj(e.subj).sem} · ${esc(e.title)}</div><div class="a"><button class="btn s p" onclick="act('${e.id}','view')">${ic('eye',15)} Consulter</button><button class="btn s" onclick="act('${e.id}','dl')">${ic('dl',15)} Télécharger</button></div></div>`;
+const semCard=n=>{const c=S.subjects.filter(s=>s.sem===n);return`<a class="card sem" href="#semestre-${n}"><div class="n">${n}</div><b>Semestre ${n}</b><span>${c.length} matières · ${S.docs.filter(d=>c.some(s=>s.id===d.subj)).length} documents</span></a>`};
+const crumb=a=>`<div class="crumb">${a.map(([t,h])=>h?`<a href="#${h}">${t}</a>`:esc(t)).join(' / ')}</div>`;
+const empty=t=>`<div class="empty">${t}</div>`;
+const grid=(a,f,w)=>a.length?`<div class="grid${w?' w':''}">${a.map(f).join('')}</div>`:empty('Aucun résultat. Modifiez votre recherche ou vos filtres.');
+const sorted=()=>[...S.docs].sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+
+const V={
+accueil(){const all=Array.from({length:12},(_,i)=>i+1);return`<section class="hero"><div><h1>Bienvenue sur VetCampus</h1><p>Retrouvez en un seul endroit tous vos cours, TD, TP, présentations et anciens sujets, classés par semestre et par matière.</p><div class="btns"><a class="btn w" href="#semestres">Explorer les semestres</a><a class="btn g" href="#sujets">Voir les anciens sujets</a></div></div><div class="stats"><div class="stat"><b>12</b><span>semestres</span></div><div class="stat"><b>${S.subjects.length}</b><span>matières</span></div><div class="stat"><b>${S.docs.length}</b><span>documents</span></div><div class="stat"><b>${S.exams.length}</b><span>anciens sujets</span></div></div></section>
+<h2>Accès rapide aux semestres</h2><div class="grid">${all.map(semCard).join('')}</div>
+<h2>Dernières ressources ajoutées</h2>${grid(sorted().slice(0,6),docCard,1)}
+<h2>Une plateforme pensée pour étudier</h2><div class="about"><div class="card"><b>Tout est classé</b><p class="sub">Chaque document est rattaché à une matière et à un semestre.</p></div><div class="card"><b>Recherche instantanée</b><p class="sub">Tapez un mot dans la barre du haut pour trouver un cours ou un sujet.</p></div><div class="card"><b>Sur tous vos écrans</b><p class="sub">Consultez vos documents sur ordinateur, tablette ou téléphone.</p></div></div>`},
+semestres(){return`<h1>Semestres</h1><p class="sub">Choisissez un semestre pour voir ses matières.</p><div class="grid">${Array.from({length:12},(_,i)=>semCard(i+1)).join('')}</div>`},
+semestre(a){const n=+a[0],m=S.subjects.filter(s=>s.sem===n);if(!n||n>12)return V.semestres();
+return`${crumb([['Semestres','semestres'],['Semestre '+n]])}<h1>Semestre ${n}</h1><p class="sub">${m.length} matières enseignées ce semestre.</p>${m.length?`<div class="grid w">${m.map(s=>{const c=S.docs.filter(d=>d.subj===s.id).length;return`<a class="card sem" href="#matiere-${s.id}"><div class="n">${ic('pdf',22)}</div><b>${esc(s.name)}</b><span>${c} documents · ${S.exams.filter(e=>e.subj===s.id).length} anciens sujets</span></a>`}).join('')}</div>`:empty('Aucune matière pour ce semestre. L’administrateur peut en ajouter.')}`},
+matiere(a,ctx){const s=S.subjects.find(x=>x.id===a[0]);if(!s)return V.semestres();const f=ctx.tab||'all';const ds=S.docs.filter(d=>d.subj===s.id&&(f==='all'||d.kind===f));
+return`${crumb([['Semestres','semestres'],['Semestre '+s.sem,'semestre-'+s.sem],[s.name]])}<h1>${esc(s.name)}</h1><p class="sub">Semestre ${s.sem} · tous les documents de la matière.</p><div class="tabs">${['all',...Object.keys(KINDS)].map(k=>`<button class="${k===f?'on':''}" onclick="tab('${k}')">${k==='all'?'Tout':KINDS[k]}</button>`).join('')}</div>${grid(ds,docCard,1)}<h2>Anciens sujets de cette matière</h2>${grid(S.exams.filter(e=>e.subj===s.id),examCard,1)}`},
+sujets(){const ys=[...new Set(S.exams.map(e=>e.year))].sort().reverse(),F=ctx.f||{};
+return`<h1>Anciens sujets</h1><p class="sub">Examens, devoirs et rattrapages des années passées.</p><div class="filters"><input id="fs" placeholder="Rechercher une matière…" value="${esc(F.q||'')}" oninput="fl()"><select id="fsem" onchange="fl()"><option value="">Tous les semestres</option>${Array.from({length:12},(_,i)=>`<option value="${i+1}"${F.sem==i+1?' selected':''}>Semestre ${i+1}</option>`).join('')}</select><select id="fy" onchange="fl()"><option value="">Toutes les années</option>${ys.map(y=>`<option${F.y===y?' selected':''}>${y}</option>`).join('')}</select><select id="ft" onchange="fl()"><option value="">Tous les types</option>${ETYPES.map(t=>`<option${F.t===t?' selected':''}>${t}</option>`).join('')}</select></div><div id="res">${examList()}</div>`},
+ressources(){const F=ctx.r||'all';const ds=sorted().filter(d=>F==='all'||d.kind===F);
+return`<h1>Bibliothèque numérique</h1><p class="sub">Toutes les ressources de la plateforme, classées automatiquement par date d’ajout.</p><div class="tabs">${['all',...Object.keys(KINDS)].map(k=>`<button class="${k===F?'on':''}" onclick="ctx.r='${k}';route()">${k==='all'?'Tout ('+S.docs.length+')':KINDS[k]+' ('+S.docs.filter(d=>d.kind===k).length+')'}</button>`).join('')}</div>${grid(ds,docCard,1)}`},
+recherche(){const q=query.toLowerCase().trim();const ms=S.subjects.filter(s=>s.name.toLowerCase().includes(q)),ds=S.docs.filter(d=>(d.title+KINDS[d.kind]+subj(d.subj).name).toLowerCase().includes(q)),es=S.exams.filter(e=>(e.title+e.year+e.type+subj(e.subj).name).toLowerCase().includes(q));
+return`<h1>Résultats pour « ${esc(query)} »</h1><p class="sub">${ms.length} matières · ${ds.length} documents · ${es.length} anciens sujets</p>${ms.length?`<h2>Matières</h2><div class="grid">${ms.map(s=>`<a class="card sem" href="#matiere-${s.id}"><b>${esc(s.name)}</b><span>Semestre ${s.sem}</span></a>`).join('')}</div>`:''}${ds.length?`<h2>Documents</h2>${grid(ds.slice(0,24),docCard,1)}`:''}${es.length?`<h2>Anciens sujets</h2>${grid(es.slice(0,24),examCard,1)}`:''}${!ms.length&&!ds.length&&!es.length?empty('Aucun résultat. Essayez un autre mot, par exemple « anatomie ».'):''}`},
+apropos(){return`<h1>À propos</h1><p class="sub">VetCampus est la plateforme pédagogique des étudiants de l’école vétérinaire, du semestre 1 au semestre 12.</p><div class="about"><div class="card"><b>Notre mission</b><p class="sub">Donner un accès simple et rapide aux ressources utiles pour réussir sa formation.</p></div><div class="card"><b>Comment ça marche</b><p class="sub">Choisissez un semestre, ouvrez une matière, puis consultez ou téléchargez les documents.</p></div><div class="card"><b>Contribuer</b><p class="sub">Les enseignants et administrateurs ajoutent les documents depuis l’espace administrateur.</p></div></div>`},
+admin(){if(!admin)return`<h1>Espace administrateur</h1><p class="sub">Entrez le code d’accès pour gérer les documents.</p><div class="card" style="max-width:380px"><input id="code" type="password" placeholder="Code d’accès" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);margin-bottom:10px" onkeydown="if(event.key==='Enter')login()"><button class="btn p" onclick="login()">Se connecter</button><p class="sub" style="font-size:12px;margin:10px 0 0">Code de démonstration : vet2026</p></div>`;
+const so=S.subjects.map(s=>`<option value="${s.id}">S${s.sem} – ${esc(s.name)}</option>`).join('');
+return`<h1>Espace administrateur</h1><p class="sub">Ajoutez, modifiez ou supprimez les matières, documents et sujets.</p><div class="cols"><div class="card"><b>Ajouter un document</b><div class="f" style="margin-top:12px"><select id="ds">${so}</select><select id="dk">${Object.entries(KINDS).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></div><div class="f"><input id="dt" placeholder="Titre du document"></div><div class="f"><input id="df" type="file" accept=".pdf,.ppt,.pptx,.doc,.docx"></div><button class="btn p" onclick="addDoc()">Ajouter le document</button></div>
+<div class="card"><b>Ajouter un ancien sujet</b><div class="f" style="margin-top:12px"><select id="es">${so}</select><select id="et">${ETYPES.map(t=>`<option>${t}</option>`).join('')}</select><input id="ey" placeholder="Année (2024-2025)"></div><div class="f"><input id="ef" type="file" accept=".pdf"></div><button class="btn p" onclick="addExam()">Ajouter le sujet</button></div>
+<div class="card"><b>Ajouter une matière</b><div class="f" style="margin-top:12px"><select id="ms">${Array.from({length:12},(_,i)=>`<option value="${i+1}">Semestre ${i+1}</option>`).join('')}</select><input id="mn" placeholder="Nom de la matière"></div><button class="btn p" onclick="addSub()">Ajouter la matière</button></div></div>
+<h2>Documents (${S.docs.length})</h2><div class="card" style="max-height:420px;overflow:auto">${sorted().slice(0,60).map(d=>`<div class="row"><span>${esc(d.title)}<br><small style="color:var(--mut)">S${subj(d.subj).sem} · ${KINDS[d.kind]}</small></span><span style="display:flex;gap:6px"><button class="btn s" onclick="ren('docs','${d.id}')">Modifier</button><button class="btn s d" onclick="del('docs','${d.id}')">Supprimer</button></span></div>`).join('')}</div>
+<h2>Matières (${S.subjects.length})</h2><div class="card" style="max-height:360px;overflow:auto">${S.subjects.map(s=>`<div class="row"><span>S${s.sem} – ${esc(s.name)}</span><span style="display:flex;gap:6px"><button class="btn s" onclick="ren('subjects','${s.id}')">Renommer</button><button class="btn s d" onclick="del('subjects','${s.id}')">Supprimer</button></span></div>`).join('')}</div>
+<p style="margin-top:18px"><button class="btn" onclick="admin=false;route()">Se déconnecter</button> <button class="btn d" onclick="resetAll()">Réinitialiser les données</button></p>`}
+};
+let ctx={};
+function examList(){const F=ctx.f||{};const r=S.exams.filter(e=>(!F.q||subj(e.subj).name.toLowerCase().includes(F.q.toLowerCase()))&&(!F.sem||subj(e.subj).sem==F.sem)&&(!F.y||e.year===F.y)&&(!F.t||e.type===F.t));return `<p class="sub">${r.length} sujet(s) trouvé(s)</p>`+grid(r,examCard,1)}
+function fl(){ctx.f={q:fs.value,sem:fsem.value,y:fy.value,t:ft.value};res.innerHTML=examList()}
+function tab(k){ctx.tab=k;route()}
+function login(){if(code.value===ADMIN_CODE){admin=true;route();toast('Connexion réussie')}else toast('Code incorrect. Réessayez.')}
+function read(inp){return new Promise(r=>{const f=inp.files[0];if(!f)return r('');if(f.size>1.5e6){toast('Fichier trop lourd (1,5 Mo max pour cette démo). Ajouté sans pièce jointe.');return r('')}const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(f)})}
+async function addDoc(){if(!dt.value.trim())return toast('Saisissez un titre.');S.docs.push({id:'d'+Date.now(),subj:ds.value,kind:dk.value,title:dt.value.trim(),date:new Date().toISOString().slice(0,10),file:await read(df)});save();route();toast('Document ajouté')}
+async function addExam(){if(!/^\d{4}-\d{4}$/.test(ey.value))return toast('Année attendue au format 2024-2025.');const s=subj(es.value);S.exams.push({id:'e'+Date.now(),subj:es.value,year:ey.value,type:et.value,title:et.value+' – '+s.name,file:await read(ef)});save();route();toast('Sujet ajouté')}
+function addSub(){if(!mn.value.trim())return toast('Saisissez un nom.');S.subjects.push({id:'s'+ms.value+'x'+Date.now(),sem:+ms.value,name:mn.value.trim()});save();route();toast('Matière ajoutée')}
+function del(t,id){if(!confirm('Supprimer cet élément ?'))return;S[t]=S[t].filter(x=>x.id!==id);if(t==='subjects'){S.docs=S.docs.filter(d=>d.subj!==id);S.exams=S.exams.filter(e=>e.subj!==id)}save();route();toast('Supprimé')}
+function ren(t,id){const x=S[t].find(o=>o.id===id),k=t==='docs'?'title':'name',v=prompt('Nouveau nom :',x[k]);if(v&&v.trim()){x[k]=v.trim();save();route();toast('Modifié')}}
+function resetAll(){if(confirm('Rétablir les données de démonstration ?')){S=seed();save();route()}}
+function route(){const h=location.hash.slice(1)||'accueil';const [p,...a]=h.split('-');const key=V[p]?p:'accueil';
+if(key!=='recherche'&&q.value&&p!=='recherche'){}
+const app=document.getElementById('app');app.innerHTML=V[key](a,ctx);
+document.querySelectorAll('nav a').forEach(l=>l.classList.toggle('on',(key==='matiere'||key==='semestre'?'semestres':key)===l.dataset.p));
+document.getElementById('nav').classList.remove('open')}
+window.addEventListener('hashchange',()=>{ctx.tab='all';route();scrollTo(0,0)});
+q.addEventListener('input',()=>{query=q.value;if(query.trim()){if(location.hash!=='#recherche')history.replaceState(null,'','#recherche');route()}else{location.hash='accueil'}});
+bg.onclick=()=>nav.classList.toggle('open');
+route();
+</script>
+</body>
+</html>
